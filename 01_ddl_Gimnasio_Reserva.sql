@@ -16,11 +16,11 @@ CREATE TABLE Socio (
     nombre         VARCHAR(100) NOT NULL,
     apellido       VARCHAR(100) NOT NULL,
     fecha_registro DATE NOT NULL CONSTRAINT df_socio_fecha DEFAULT (GETDATE()),
-    telefono       VARCHAR(15)
+    telefono       VARCHAR(15),
 
     CONSTRAINT pk_socio PRIMARY KEY (id_socio),
     CONSTRAINT uq_socio_DUI UNIQUE (dui),
-    CONSTRAINT ck_socio_dui CHECK (dui LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9]'),
+    CONSTRAINT ck_socio_dui CHECK (dui LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9]')
 );
 
 -- 2. Tabla Entrenador
@@ -72,7 +72,7 @@ CREATE TABLE Programacion_clase (
 CREATE TABLE Reserva (
     id_reserva      INT IDENTITY(1,1) NOT NULL,
     estado_reserva  VARCHAR(30) NOT NULL,
-    fecha_reserva DATE NOT NULL
+    fecha_reserva DATE NOT NULL,
     CONSTRAINT df_reserva_fecha DEFAULT (GETDATE()),
     id_socio        INT NOT NULL,
     id_programacion INT NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE Reserva (
 CREATE TABLE Pago (
     id_pago    INT IDENTITY(1,1) NOT NULL,
     monto      DECIMAL(10,2) NOT NULL,
-    fecha_pago DATE NOT NULL
+    fecha_pago DATE NOT NULL,
     CONSTRAINT df_pago_fecha DEFAULT (GETDATE()),
     razon      VARCHAR(150) NOT NULL,
     forma_pago VARCHAR(50) NOT NULL,
